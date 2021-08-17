@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    _PROJECT_NAME: "products"
+    _PROJECT_NAME: "wizard-product"
 
 phases:
   install:
@@ -94,6 +94,6 @@ phases:
                       failureThreshold: 5
           EOF
 
-cache:
-  paths:
-    - '/root/.m2/**/*'
+#cache:
+#  paths:
+#    - '/root/.m2/**/*'

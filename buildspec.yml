@@ -47,6 +47,7 @@ phases:
             labels:
               app: $_PROJECT_NAME
           spec:
+            type: LoadBalancer
             ports:
               - port: 8080
                 targetPort: 8080
@@ -76,6 +77,13 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
+# 추가 start
+                    resources:
+                      limits:
+                        cpu: 500m
+                      requests:
+                        cpu: 00m
+# 추가 end                        
                     readinessProbe:
                       httpGet:
                         path: /actuator/health

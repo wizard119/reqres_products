@@ -56,7 +56,6 @@ phases:
           EOF
       - |
           cat  <<EOF | kubectl apply -f -
-
           apiVersion: apps/v1
           kind: Deployment
           metadata:
@@ -79,16 +78,11 @@ phases:
                     ports:
                       - containerPort: 8080
                 env:
-                - name: COMPANY
-                  valueFrom:
-                    configMapKeyRef:
-                       name: rental-cm
-                       key: company
-                - name: GROUPNAME
-                  valueFrom:
-                    configMapKeyRef:
-                       name: rental-cm
-                       key: groupname
+                  name: COMPANY
+                    valueFrom:
+                      configMapKeyRef:
+                         name: rental-cm
+                         key: company
           EOF
 #                    readinessProbe:
 #                      httpGet:

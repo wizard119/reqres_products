@@ -82,7 +82,7 @@ phases:
                       valueFrom:
                         configMapKeyRef:
                            name: rental-cm
-                             key: company
+                           key: company
           EOF
 #                    readinessProbe:
 #                      httpGet:

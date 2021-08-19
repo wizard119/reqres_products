@@ -77,6 +77,7 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
+          EOF                      
 #                    readinessProbe:
 #                      httpGet:
 #                        path: /actuator/health
@@ -93,7 +94,6 @@ phases:
 #                      timeoutSeconds: 2
 #                      periodSeconds: 5
 #                      failureThreshold: 5
-          EOF
 #cache:
   #paths:
     #- '/root/.m2/**/*'

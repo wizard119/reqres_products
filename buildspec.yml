@@ -77,30 +77,30 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
-                    args: 
-                      - /bin/sh
-                      - -c
-                      - touch /tmp/test; sleep 30; rm -rf /tmp/test; sleep 600
-                    resources:
-                      limits:
-                        cpu: 500m
-                      requests:
-                        cpu: 200m
-                    readinessProbe:
-                      httpGet:
-                        path: /actuator/health
-                        port: 8080
-                      initialDelaySeconds: 10
-                      timeoutSeconds: 2
-                      periodSeconds: 5
-                      failureThreshold: 10
-                    livenessProbe:
-                      exec:
-                        command:
-                        - cat
-                        - /tmp/test
-                      initialDelaySeconds: 5
-                      periodSeconds: 5
+#                    args: 
+#                      - /bin/sh
+#                      - -c
+#                      - touch /tmp/test; sleep 30; rm -rf /tmp/test; sleep 600
+#                    resources:
+#                      limits:
+#                        cpu: 500m
+#                      requests:
+#                        cpu: 200m
+#                    readinessProbe:
+#                      httpGet:
+#                        path: /actuator/health
+#                        port: 8080
+#                      initialDelaySeconds: 10
+#                      timeoutSeconds: 2
+#                      periodSeconds: 5
+#                      failureThreshold: 10
+#                    livenessProbe:
+#                      exec:
+#                        command:
+#                        - cat
+#                        - /tmp/test
+#                      initialDelaySeconds: 5
+#                      periodSeconds: 5
           EOF
 #cache:
 #  paths:

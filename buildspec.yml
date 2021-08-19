@@ -77,6 +77,17 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
+                env:
+                  - name: company
+                    valueFrom:
+                      configMapKeyRef:
+                        name: rental-cm
+                        key: company
+                  - name: groupname
+                    valueFrom:
+                      configMapKeyRef:
+                        name: rental-cm
+                        key: groupname
           EOF
 #                    readinessProbe:
 #                      httpGet:

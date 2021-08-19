@@ -78,12 +78,12 @@ phases:
                     ports:
                       - containerPort: 8080
                 env:
-                  - name: company
+                  - name: COMPANY
                     valueFrom:
                       configMapKeyRef:
                         name: rental-cm
                         key: company
-                  - name: groupname
+                  - name: GROUPNAME
                     valueFrom:
                       configMapKeyRef:
                         name: rental-cm

@@ -1,5 +1,5 @@
 version: 0.2
-
+    
 env:
   variables:
     _PROJECT_NAME: "wizard-product"
@@ -49,7 +49,7 @@ phases:
           spec:
             type: LoadBalancer
             ports:
-              - port: 8080
+              - port: 80
                 targetPort: 8080
             selector:
               app: $_PROJECT_NAME
@@ -77,16 +77,6 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
-          EOF
-#                    args: 
-#                      - /bin/sh
-#                      - -c
-#                      - touch /tmp/test; sleep 30; rm -rf /tmp/test; sleep 600
-#                    resources:
-#                      limits:
-#                        cpu: 500m
-#                      requests:
-#                        cpu: 200m
 #                    readinessProbe:
 #                      httpGet:
 #                        path: /actuator/health
@@ -96,12 +86,14 @@ phases:
 #                      periodSeconds: 5
 #                      failureThreshold: 10
 #                    livenessProbe:
-#                      exec:
-#                        command:
-#                        - cat
-#                        - /tmp/test
-#                      initialDelaySeconds: 5
+#                      httpGet:
+#                        path: /actuator/health
+#                        port: 8080
+#                      initialDelaySeconds: 120
+#                      timeoutSeconds: 2
 #                      periodSeconds: 5
+#                      failureThreshold: 5
+          EOF
 #cache:
-#  paths:
-#    - '/root/.m2/**/*'
+  #paths:
+    #- '/root/.m2/**/*'

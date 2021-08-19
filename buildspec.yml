@@ -56,6 +56,7 @@ phases:
           EOF
       - |
           cat  <<EOF | kubectl apply -f -
+
           apiVersion: apps/v1
           kind: Deployment
           metadata:
@@ -77,6 +78,17 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
+                env:
+                - name: COMPANY
+                  valueFrom:
+                    configMapKeyRef:
+                       name: rental-cm
+                       key: company
+                - name: GROUPNAME
+                  valueFrom:
+                    configMapKeyRef:
+                       name: rental-cm
+                       key: groupname
           EOF
 #                    readinessProbe:
 #                      httpGet:
